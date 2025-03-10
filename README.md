@@ -1,0 +1,1 @@
+Копия Trollo для изучения Redux Toolkit, React
