@@ -1,6 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
+import taskReducer from "./card/cardStore";
+
 export const store = configureStore({
     reducer: {
+        tasks: taskReducer,
     },
     
 })

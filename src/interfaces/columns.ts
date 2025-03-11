@@ -1,12 +1,15 @@
-export default interface ColumsState{
-    columns:{
-        [key: string]:{
-            id: string,
-            title: string,
-            taskIds: string[]
-        }
-    },
-    tasks:{
-        [key: string]:{id: string, content: string}
-    }
+
+interface Task{
+    id: string,
+    content: string
+}
+
+interface Column{
+    id: string,
+    title: string,
+    tasks: Task[]
+}
+
+export interface BoardState{
+    columns: Column[]
 }
