@@ -1,3 +1,5 @@
 export interface CardProps {
-    Title: string
+    id: string,
+    title: string,
+    tasks: {id: string, content: string, }[]
 }

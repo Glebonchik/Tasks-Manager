@@ -1,12 +1,16 @@
-import Card from "./components/Card"
+import { Provider } from "react-redux"
+import { store } from "./state/store"
+import { DndProvider } from "react-dnd"
+import { HTML5Backend } from "react-dnd-html5-backend"
+import Board from "./components/Board"
 
 const App = () => {
   return (
-    <div className="flex space-between space-x-3 space">
-      <Card Title={"In process"}/>
-      <Card Title={"Done"}/>
-      <Card Title={"Not done"}/>
-    </div>
+    <Provider store={store}>
+      <DndProvider debugMode={true} backend={HTML5Backend}>
+        <Board />
+      </DndProvider>
+    </Provider>
   )
 }
 

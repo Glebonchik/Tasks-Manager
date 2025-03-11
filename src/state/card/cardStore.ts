@@ -26,18 +26,23 @@ const tasksSlice = createSlice({
   initialState,
   reducers: {
     moveTask: (state, action: PayloadAction<{taskId: string, sourceColumnId: string,  destinationColumnId: string}>) => {
-      const { taskId, sourceColumnId, destinationColumnId } = action.payload;
+        const { taskId, sourceColumnId, destinationColumnId } = action.payload;
 
-      const sourceColumn = state.columns.find((col) => col.id === sourceColumnId);
-      const task = sourceColumn?.tasks.find((t) => t.id === taskId);
+        const sourceColumn = state.columns.find((col) => col.id === sourceColumnId);
+        if (!sourceColumn) return;
+      
+        const taskIndex = sourceColumn.tasks.findIndex((t) => t.id === taskId);
+        if (taskIndex === -1) return;
+     
+        const [task] = sourceColumn.tasks.splice(taskIndex, 1);
+      
 
-      if (!sourceColumn || !task) return
-      sourceColumn.tasks = sourceColumn.tasks.filter((t) => t.id !== taskId);
-
-      const destinationColumn = state.columns.find((col) => col.id == destinationColumnId);
-      if (destinationColumn){
-        destinationColumn.tasks.push(task);
-      }
+        const destinationColumn = state.columns.find(
+          (col) => col.id === destinationColumnId
+        );
+        if (destinationColumn) {
+          destinationColumn.tasks.push(task);
+        }
     },
   },
 });
