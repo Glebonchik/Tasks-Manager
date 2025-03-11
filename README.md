@@ -26,6 +26,6 @@
    git clone https://github.com/Glebonchik/Tasks-Manager.git
    cd Task-Manager
 
-1. Клонируйте репозиторий:
+1. Установка зависемостей:
    ```bash
    yarn
