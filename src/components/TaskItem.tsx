@@ -28,7 +28,7 @@ const TaskItem: React.FC<TaskProps> = ({ id, content, columnId }) => {
       <span>
       {content}
       </span>
-      <button onClick={handleDeleteTask} className="text-red-500 cursor-pointer">X</button>
+      <button onClick={handleDeleteTask} className="text-red-500 cursor-pointer">&times;</button>
     </div>
   );
 };

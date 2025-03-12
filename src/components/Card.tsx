@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { CardProps } from "../interfaces/cardProps"
 import { useDispatch } from "react-redux"
 import { DropTargetMonitor,  useDrop } from "react-dnd";
-import { moveTask, appendTask } from "../state/card/cardStore";
+import { moveTask, appendTask, deleteColumn } from "../state/card/cardStore";
 import TaskItem from "./TaskItem";
 
 const Card: React.FC<CardProps> = ({id, title, tasks}) => {
@@ -33,8 +33,15 @@ const Card: React.FC<CardProps> = ({id, title, tasks}) => {
       }
       }
 
+      const handleDeleteColumn = () => {
+        dispatch(deleteColumn({id: id}))
+      }
+
       return (
-        <div ref={drop} className={`border-4 border-double border-blue-500 rounded-lg p-4 ${isOver ? "bg-gray-200" : ""}`}>
+        <div ref={drop} className={`border-4 border-double border-blue-500 rounded-lg p-4 ${isOver ? "bg-gray-200" : ""} relative`}>
+          <button onClick={handleDeleteColumn} className="absolute top-2 right-2 text-red-500 text-xl cursor-pointer">
+            &times;
+          </button>
           <h1 className="font-bold text-xl">{title}</h1>
           <div className="mt-4">
             {tasks.map((task) => (
@@ -48,12 +55,7 @@ const Card: React.FC<CardProps> = ({id, title, tasks}) => {
           </div>
       
           <div className="flex justify-center mt-4">
-            <button
-              className="cursor-pointer text-3xl font-bold"
-              onClick={() => setFormStatus(true)}
-            >
-              +
-            </button>
+            <button onClick={() => setFormStatus(true)} className="cursor-pointer text-3xl font-bold">+</button>
           </div>
 
           {formStatus && (
