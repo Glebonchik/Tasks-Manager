@@ -44,8 +44,23 @@ const tasksSlice = createSlice({
           destinationColumn.tasks.push(task);
         }
     },
+    deleteTask: (state, action: PayloadAction<{taskId: string, sourceColumnId: string,}>) =>{
+      const {taskId, sourceColumnId} = action.payload;
+      const sourceColumn = state.columns.find((col) => col.id === sourceColumnId);
+      if (!sourceColumn) return
+
+      sourceColumn.tasks = sourceColumn.tasks.filter((task) => task.id !== taskId)
+
+    },
+    appendTask: (state, action: PayloadAction<{ sourceColumnId: string, content: string }>) => {
+      const {sourceColumnId, content} = action.payload;
+      const sourceColumn = state.columns.find((col) => col.id === sourceColumnId);
+      if (!sourceColumn) return
+
+     sourceColumn.tasks.push({id: Date.now().toString(), content: content})
+    },
   },
 });
 
-export const { moveTask } = tasksSlice.actions;
+export const { moveTask, deleteTask, appendTask } = tasksSlice.actions;
 export default tasksSlice.reducer;

@@ -7,7 +7,7 @@ import Board from "./components/Board"
 const App = () => {
   return (
     <Provider store={store}>
-      <DndProvider debugMode={true} backend={HTML5Backend}>
+      <DndProvider backend={HTML5Backend}>
         <Board />
       </DndProvider>
     </Provider>
