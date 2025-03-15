@@ -38,7 +38,7 @@ const Card: React.FC<CardProps> = ({id, title, tasks}) => {
       }
 
       return (
-        <div ref={drop} className={`border-4 border-double border-blue-500 rounded-lg p-4 ${isOver ? "bg-gray-200" : ""} relative`}>
+        <div ref={drop} className={`border-4 border-double border-blue-500 rounded-lg p-4 ${isOver ? "bg-gray-200" : ""} relative m-y-2`}>
           <button onClick={handleDeleteColumn} className="absolute top-2 right-2 text-red-500 text-xl cursor-pointer">
             &times;
           </button>
